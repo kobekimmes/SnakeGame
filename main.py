@@ -91,6 +91,11 @@ class Game:
         s = Snake(self.surface, Cube((self.ss//2)// self.bs * self.bs, (self.ss//2)// self.bs * self.bs, self.bs))
 
         while not self.flag:
+
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    self.flag = True
+
             self.backGround()
             if self.g:
                 self.drawGrid()
