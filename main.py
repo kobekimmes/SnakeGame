@@ -17,7 +17,7 @@ class Game:
         self.clock = pg.time.Clock()
         self.flag = False
         self.win = False
-        self.apple = Cube(random.randint(1, self.ss-1) // self.bs * self.bs, random.randint(1, self.ss-1) // self.bs * self.bs, self.bs, (255, 0, 0))
+        self.apple = Cube((random.randint(1, self.ss-1) // self.bs * self.bs) + 5, (random.randint(1, self.ss-1) // self.bs * self.bs) + 5, self.bs - 5, (255, 0, 0))
 
 
 
@@ -42,14 +42,17 @@ class Game:
                 if keys[pg.K_LEFT]:
                     snake.dirx = -1
                     snake.diry = 0
-
+                    print("left")
                 elif keys[pg.K_RIGHT]:
+                    print("right")
                     snake.dirx = 1
                     snake.diry = 0
                 elif keys[pg.K_DOWN]:
+                    print("down")
                     snake.diry = 1
                     snake.dirx = 0
                 elif keys[pg.K_UP]:
+                    print("Up")
                     snake.diry = -1
                     snake.dirx = 0
 
@@ -92,10 +95,6 @@ class Game:
 
         while not self.flag:
 
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    self.flag = True
-
             self.backGround()
             if self.g:
                 self.drawGrid()
@@ -122,13 +121,8 @@ class Game:
             pg.display.flip()
             self.clock.tick(self.FPS)
 
-
-
-
-
-
         pg.quit()
 
 
-snake = Game(600, 20, 10, False)
+snake = Game(400, 20, 10, True)
 snake.main_loop()
